@@ -2,13 +2,38 @@
 $nom="Doe";
 $prenom="Jane";
 $age=20;
-$enfants=["jane","Ali","karim"];
+//tableau indexé
+$enfants=["jane","Ali","karim","Jamal"];
+$enfants[4]="Rim";
+$enfants[]="Myriam";//push
+$enfants[10]="Jhon";
+// echo count($enfants);
+unset($enfants[10]);
+// $enfants[0]=null;
+$enfants[]="oussama";//ajoute a la fin 
+array_shift( $enfants);//supprime le debut
+array_unshift($enfants,"Khadraoui","alami");//ajout au debut
+array_pop($enfants);//supprime la fin 
+// array_shift( $enfants);
+// array_intersect()
+// $enfants[]
+echo $enfants[4];
 $genre="homme";
 //affectation conditionnelle 
 $p=($genre=="homme")? "Mr.":"Mme";
 $color=($genre=="homme")? "deepskyblue":"pink";
-
-
+$produit=['libelle'=>'hp dv 8','prix'=>9000,'marque'=>'hp'];//TABLEAU ASSOCIATIF
+$produit['libelle']='HP CP9';
+$produit['config']='core i3 ';
+$produit[]='casa';
+$produit[]='rabat';
+$produit['boutique']='centre ville';
+$produit[]='FES';
+// $c=> $v
+$t=[0=>"hp dv 8",1=>9000,'hp'];//INDEXE
+echo $produit['libelle'],"<br>";
+print ($produit['libelle']);
+echo $t[0];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,6 +60,23 @@ $color=($genre=="homme")? "deepskyblue":"pink";
          var_dump ( $enfants );
         
         ?>
+        
     </h4>
+    <h3>Liste des enfants :</h3>
+    <ul>
+<?php foreach($enfants as $key=>$value){?>
+        <li><?=$key?> <?=$value?></li>
+<?php }?>
+    </ul>
+    <table border="1" width="500" align="center">
+        <?php foreach($produit as $c=> $v) {?>
+        <tr>
+            <td><?=$c?></td>
+            <td><?=$v?></td>
+        </tr>
+        <?php } ?>
+      
+      
+    </table>
 </body>
 </html>
