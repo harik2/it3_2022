@@ -1,8 +1,9 @@
 <?php 
 //URL -> GET -> $_GET
 //envoi par method="post"=>$_POST
-print_r($_POST);
-print_r($_GET);
+// print_r($_POST);
+// print_r($_GET);
+
 $login=$_POST['login'];
 $pwd=$_POST['passe'];
 ?>
