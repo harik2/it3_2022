@@ -23,6 +23,6 @@ $rp->execute([$libelle,$prix,$qtestock]);
 libelle : <?=$libelle?> <br>
 prix : <?=$_POST['prix']?> <br>
 libelle : <?=$qtestock?> <br>
-    
+    <!-- CRUD : create + READ + Update et delete  -->
 </body>
 </html>
