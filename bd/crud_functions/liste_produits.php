@@ -1,10 +1,9 @@
 <?php
-$cnx = new PDO('mysql:host=localhost;dbname=dbit3', "root", "");
-//preparation de la requete sql dans cette connexion
-$rp = $cnx->prepare("select * from produit");
-//execution 
-$rp->execute();
-$produits = $rp->fetchAll();
+include "functions.php";
+if(isset($_GET['mc'])){
+$produits=rechercher($_GET['mc']);
+}else
+$produits=all();
 // print_r($produits);
 ?>
 <!DOCTYPE html>
@@ -22,6 +21,10 @@ $produits = $rp->fetchAll();
 <?php include "menu.php";?>
     <div class="container">
         <h5 class="text-center text-warning my-5">Liste des produits </h5>
+        <div>
+            <form action="liste_produits.php" method="get">
+Mot clé : <input type="text" name="mc" id=""> <button>Ok</button>
+        </form></div>
         <table class="table table-striped ">
             <thead>
                 <tr>
@@ -42,6 +45,7 @@ $produits = $rp->fetchAll();
                         <td><?= $p['qtestock'] ?></td>
                         <td>
                             <a class="btn btn-danger btn-sm" href="delete_produit.php?id=<?= $p['id'] ?>" onclick="return confirm('Supprimer?')">Supprimer</a>
+                            <a class="btn btn-warning btn-sm" href="edit_produit.php?id=<?= $p['id'] ?>">Editer</a>
                         </td>
                     </tr>
                 <?php } ?>
