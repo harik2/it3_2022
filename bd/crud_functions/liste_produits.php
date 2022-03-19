@@ -3,7 +3,7 @@ include "functions.php";
 if(isset($_GET['mc'])){
 $produits=rechercher($_GET['mc']);
 }else
-$produits=all();
+$produits=all("produit");
 // print_r($produits);
 ?>
 <!DOCTYPE html>
@@ -32,6 +32,7 @@ Mot clé : <input type="text" name="mc" id=""> <button>Ok</button>
                     <th>Libelle</th>
                     <th>prix</th>
                     <th>qte en stock</th>
+                    <th>Categorie</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -43,6 +44,7 @@ Mot clé : <input type="text" name="mc" id=""> <button>Ok</button>
                         <td><?= $p['libelle'] ?></td>
                         <td><?= $p['prix'] ?></td>
                         <td><?= $p['qtestock'] ?></td>
+                        <td><?= $p['categorie_id'] ?></td>
                         <td>
                             <a class="btn btn-danger btn-sm" href="delete_produit.php?id=<?= $p['id'] ?>" onclick="return confirm('Supprimer?')">Supprimer</a>
                             <a class="btn btn-warning btn-sm" href="edit_produit.php?id=<?= $p['id'] ?>">Editer</a>

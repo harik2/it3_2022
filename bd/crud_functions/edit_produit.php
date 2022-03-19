@@ -1,7 +1,7 @@
 <?php 
 include "functions.php";
 $id=$_GET['id'];//13
-$produit=findById($id);
+$produit=findById($id,"produit");
 // print_r($produit);
 
 ?>

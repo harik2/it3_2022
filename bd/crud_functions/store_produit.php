@@ -6,4 +6,5 @@ $libelle=$_POST['libelle'];
 $prix=$_POST['prix'];
 $qtestock=$_POST['qtestock'];
 ajouter_produit($libelle,$prix,$qtestock);
+//redirection
 header("location:liste_produits.php");

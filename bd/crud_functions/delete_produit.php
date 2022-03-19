@@ -1,7 +1,7 @@
 <?php 
 include "functions.php";
 $id=$_GET['id'];
-supprimer_produit($id);
+supprimer($id,"produit");
 header("location:liste_produits.php");
 
 

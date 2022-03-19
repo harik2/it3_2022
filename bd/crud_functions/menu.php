@@ -13,6 +13,13 @@
           <a class="nav-link" href="liste_produits.php">Liste des produits</a>
         </li>
        
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="create_categorie.php">Nouvelle Catégorie</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="liste_categories.php">Liste des categories</a>
+        </li>
+       
       </ul>
     </div>
   </div>

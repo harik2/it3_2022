@@ -19,46 +19,16 @@ function connecter_db()
 
 
 //ajouter un produit 
-function ajouter_produit($libelle, $prix, $qtestock)
+function ajouter_produit($libelle, $prix, $qtestock,$categorie_id=1)
 {
     try {
         $cnx = connecter_db();
-        $rp = $cnx->prepare("insert into produit (libelle,prix,qtestock) values(?,?,?)");
-        $rp->execute([$libelle, $prix, $qtestock]);
+        $rp = $cnx->prepare("insert into produit (libelle,prix,qtestock,categorie_id) values(?,?,?,?)");
+        $rp->execute([$libelle, $prix, $qtestock,$categorie_id]);
     } catch (PDOException  $e) {
         echo "Erreur d'ajout de produit  " . $e->getMessage();
     }
 }
-
-
-//supprimer un produit 
-
-function supprimer_produit($id)
-{
-    try {
-        $cnx = connecter_db();
-        $rp = $cnx->prepare("delete from produit where id =?");
-        $rp->execute([$id]);
-    } catch (PDOException  $e) {
-        echo "Erreur de suppression de produit  " . $e->getMessage();
-    }
-}
-
-
-// lister les produits 
-function all()
-{
-    try {
-        $cnx = connecter_db();
-        $rp = $cnx->prepare("select * from produit ");
-        $rp->execute();
-
-        return $rp->fetchAll();
-    } catch (PDOException  $e) {
-        echo "Erreur de selection de produit  " . $e->getMessage();
-    }
-}
-
 // modifier un produit 
 
 function modifier_produit($libelle, $prix, $qtestock, $id)
@@ -72,25 +42,71 @@ function modifier_produit($libelle, $prix, $qtestock, $id)
     }
 }
 
-// rechercher un produit par son id
-function findById($id)
+
+//supprimer un produit 
+//supprimer(1,"produit")
+function supprimer($id,$table)
 {
     try {
         $cnx = connecter_db();
-        $rp = $cnx->prepare("select * from produit where id=? ");
+        $rp = $cnx->prepare("delete from $table where id =?");
         $rp->execute([$id]);
+    } catch (PDOException  $e) {
+        echo "Erreur de suppression de produit  " . $e->getMessage();
+    }
+}
 
-        return $rp->fetch();
+
+
+// lister les produits 
+function all($table)
+{
+    try {
+        $cnx = connecter_db();
+        $rp = $cnx->prepare("select * from $table ");
+        $rp->execute();
+
+        return $rp->fetchAll();
+    } catch (PDOException  $e) {
+        echo "Erreur de selection de produit  " . $e->getMessage();
+    }
+}
+
+// lister les produits 
+function yatilProduitDansCategorie($categorie_id)
+{
+    try {
+        $cnx = connecter_db();
+        $rp = $cnx->prepare("select * from produit where categorie_id=? ");
+        $rp->execute([$categorie_id]);
+
+        $resultat= $rp->fetchAll();
+        return !empty($resultat);
     } catch (PDOException  $e) {
         echo "Erreur de selection de produit  " . $e->getMessage();
     }
 }
 
 
-//rechercher un produit par son libelle 
-function rechercher($mc)
+// rechercher un produit par son id
+//findById(1,"produit","matricule")
+function findById($id,$table,$nom_id="id")
 {
     try {
+        $cnx = connecter_db();
+        $rp = $cnx->prepare("select * from $table where $nom_id=? ");
+        $rp->execute([$id]);
+
+        return $rp->fetch();
+    } catch (PDOException  $e) {
+        echo "Erreur de selection de $table  " . $e->getMessage();
+    }
+}
+
+
+//rechercher un produit par son libelle 
+function rechercher($mc)
+{    try {
         $cnx = connecter_db();
         $rp = $cnx->prepare("select * from produit where libelle like ? ");
         $rp->execute(["%$mc%"]);
@@ -100,3 +116,30 @@ function rechercher($mc)
         echo "Erreur de recherche de produit  " . $e->getMessage();
     }
 }
+
+//categorie
+//ajouter_categorie("PE")
+function ajouter_categorie($nomcategorie)
+{
+    try {
+        $cnx = connecter_db();
+        $rp = $cnx->prepare("insert into categorie(nomcategorie) values(?)");
+        $rp->execute([$nomcategorie]);
+    } catch (PDOException  $e) {
+        echo "Erreur d'ajout de la categorie  " . $e->getMessage();
+    }
+}
+function modifier_categorie($nomcategorie,$id)
+{
+    try {
+        $cnx = connecter_db();
+        $rp = $cnx->prepare("update categorie set nomcategorie=? where id=?");
+        $rp->execute([$nomcategorie,$id]);
+    } catch (PDOException  $e) {
+        echo "Erreur de MAJ de la categorie  " . $e->getMessage();
+    }
+}
+
+
+
+//fin categorie
