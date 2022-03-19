@@ -5,6 +5,7 @@ include "functions.php";
 $libelle=$_POST['libelle'];
 $prix=$_POST['prix'];
 $qtestock=$_POST['qtestock'];
-ajouter_produit($libelle,$prix,$qtestock);
+$categorie_id=$_POST['categorie_id'];
+ajouter_produit($libelle,$prix,$qtestock,$categorie_id);
 //redirection
 header("location:liste_produits.php");

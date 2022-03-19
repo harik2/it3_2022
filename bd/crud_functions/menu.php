@@ -1,3 +1,7 @@
+<?php 
+include_once "functions.php";
+$categories=all("categorie");
+?>
 <nav class="navbar navbar-expand-lg navbar-light  navbar navbar-dark bg-primary">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">GEST STOCK</a>
@@ -19,7 +23,16 @@
         <li class="nav-item">
           <a class="nav-link" href="liste_categories.php">Liste des categories</a>
         </li>
-       
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Nos produits 
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <?php foreach($categories as $c){?>  
+          <li><a class="dropdown-item" href="liste_produits.php?categorie_id=<?=$c['id']?>"><?=$c['nomcategorie']?></a></li>
+           <?php } ?>
+          </ul>
+        </li>
       </ul>
     </div>
   </div>

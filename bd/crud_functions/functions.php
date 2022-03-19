@@ -72,6 +72,31 @@ function all($table)
     }
 }
 
+function produitEtCategorie()
+{
+    try {
+        $cnx = connecter_db();
+        $rp = $cnx->prepare("select p.*, c.nomcategorie  from produit p join categorie c on c.id=p.categorie_id ");
+        $rp->execute();
+
+        return $rp->fetchAll();
+    } catch (PDOException  $e) {
+        echo "Erreur de selection de produit  " . $e->getMessage();
+    }
+}
+
+function produitEtCategorieParCategorieId($categorie_id)
+{
+    try {
+        $cnx = connecter_db();
+        $rp = $cnx->prepare("select p.*, c.nomcategorie  from produit p join categorie c on c.id=p.categorie_id where c.id=?");
+        $rp->execute([$categorie_id]);
+
+        return $rp->fetchAll();
+    } catch (PDOException  $e) {
+        echo "Erreur de selection de produit  " . $e->getMessage();
+    }
+}
 // lister les produits 
 function yatilProduitDansCategorie($categorie_id)
 {

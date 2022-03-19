@@ -1,9 +1,13 @@
 <?php
-include "functions.php";
+require_once "functions.php";
 if(isset($_GET['mc'])){
 $produits=rechercher($_GET['mc']);
-}else
-$produits=all("produit");
+}else if(isset($_GET['categorie_id'])){
+     $produits=produitEtCategorieParCategorieId($_GET['categorie_id']);
+
+}else{
+    $produits=produitEtCategorie();
+}
 // print_r($produits);
 ?>
 <!DOCTYPE html>
@@ -44,7 +48,7 @@ Mot clé : <input type="text" name="mc" id=""> <button>Ok</button>
                         <td><?= $p['libelle'] ?></td>
                         <td><?= $p['prix'] ?></td>
                         <td><?= $p['qtestock'] ?></td>
-                        <td><?= $p['categorie_id'] ?></td>
+                        <td><?= $p['nomcategorie'] ?></td>
                         <td>
                             <a class="btn btn-danger btn-sm" href="delete_produit.php?id=<?= $p['id'] ?>" onclick="return confirm('Supprimer?')">Supprimer</a>
                             <a class="btn btn-warning btn-sm" href="edit_produit.php?id=<?= $p['id'] ?>">Editer</a>

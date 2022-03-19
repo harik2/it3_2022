@@ -1,3 +1,8 @@
+<?php
+include "functions.php";
+$categories = all("categorie");
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,36 +16,58 @@
 </head>
 
 <body>
-<?php include "menu.php";?>
+    <?php include "menu.php"; ?>
 
-  <div class="container">
-      <div class="row">
-          <div class="col-md-6 border mx-auto mt-5 p-3 shadow">
-              <h5 class="text-center mb-2 text-warning">Nouveau Produit: </h5 class="text-center mb-2 text-warning">
-          <form action="store_produit.php" method="post">
-        <div class="mb-3">
-            <label for="libelle" class="form-label"> Libelle : </label> <input class="form-control" type="text" name="libelle" id="libelle">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 border mx-auto mt-5 p-3 shadow">
+                <h5 class="text-center mb-2 text-warning">Nouveau Produit: </h5 class="text-center mb-2 text-warning">
+                <form action="store_produit.php" method="post">
+                    <div class="mb-3">
+                        <label for="libelle" class="form-label"> Libelle : </label> <input class="form-control" type="text" name="libelle" id="libelle">
 
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="prix" class="form-label"> Prix : </label>
+                        <input type="text" name="prix" id="prix" class="form-control">
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label for="qtestock" class="form-label">Quantite en stock :</label>
+                        <input type="text" name="qtestock" id="qtestock" class="form-control">
+                    </div>
+                    <div class="mb-3">
+
+                        <label for="categorie_id" class="form-label">Categorie :</label>
+                        <select type="text" name="categorie_id" id="categorie_id" class="form-control">
+                            <?php foreach ($categories as $c) { ?>
+                                <option value="<?= $c['id'] ?>"><?= $c['nomcategorie'] ?></option>
+                            <?php } ?>
+
+                        </select>
+
+                        <div class="mb-3">
+<?php  foreach($categories as $c){?>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="categorie_id" id="exampleRadios1" value="<?=$c['id']?>" checked>
+                                <label class="form-check-label" for="exampleRadios1">
+                                   <?=$c['nomcategorie']?>
+                                </label>
+                            </div>
+<?php } ?>
+
+                        </div>
+                    </div>
+
+
+                    <button type="submit" class="btn btn-primary">Ajouter le produit</button>
+                </form>
+            </div>
         </div>
-
-        <div class="mb-3">
-            <label for="prix" class="form-label"> Prix : </label>
-            <input type="text" name="prix" id="prix" class="form-control">
-
-        </div>
-
-        <div class="mb-3">
-
-            <label for="qtestock" class="form-label">Quantite en stock :</label>
-            <input type="text" name="qtestock" id="qtestock" class="form-control">
-        </div>
-
-
-        <button type="submit" class="btn btn-primary">Ajouter le produit</button>
-    </form>
-          </div>
-      </div>
-  </div>
+    </div>
 
 
 
