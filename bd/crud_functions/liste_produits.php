@@ -33,6 +33,7 @@ Mot clé : <input type="text" name="mc" id=""> <button>Ok</button>
             <thead>
                 <tr>
                     <th>id</th>
+                    <th>image</th>
                     <th>Libelle</th>
                     <th>prix</th>
                     <th>qte en stock</th>
@@ -45,6 +46,7 @@ Mot clé : <input type="text" name="mc" id=""> <button>Ok</button>
                 <?php foreach ($produits as $p) { ?>
                     <tr>
                         <td><?= $p['id'] ?></td>
+                        <td><img src="<?= $p['chemin'] ?>" width="150"></td>
                         <td><?= $p['libelle'] ?></td>
                         <td><?= $p['prix'] ?></td>
                         <td><?= $p['qtestock'] ?></td>

@@ -19,24 +19,33 @@ function connecter_db()
 
 
 //ajouter un produit 
-function ajouter_produit($libelle, $prix, $qtestock,$categorie_id=1)
+function ajouter_produit($libelle, $prix, $qtestock,$categorie_id=1,$chemin)
 {
     try {
         $cnx = connecter_db();
-        $rp = $cnx->prepare("insert into produit (libelle,prix,qtestock,categorie_id) values(?,?,?,?)");
-        $rp->execute([$libelle, $prix, $qtestock,$categorie_id]);
+        $rp = $cnx->prepare("insert into produit (libelle,prix,qtestock,categorie_id,chemin) values(?,?,?,?,?)");
+        $rp->execute([$libelle, $prix, $qtestock,$categorie_id,$chemin]);
     } catch (PDOException  $e) {
         echo "Erreur d'ajout de produit  " . $e->getMessage();
     }
 }
 // modifier un produit 
 
-function modifier_produit($libelle, $prix, $qtestock,$categorie_id, $id)
+function modifier_produit($libelle, $prix, $qtestock,$categorie_id, $chemin,$id)
 {
     try {
         $cnx = connecter_db();
-        $rp = $cnx->prepare("update produit set libelle=?, prix=?,qtestock=?,categorie_id=?   where id =?");
-        $rp->execute([$libelle, $prix, $qtestock,$categorie_id ,$id]);
+if(!empty($chemin)){
+    $rp = $cnx->prepare("update produit set libelle=?, prix=?,qtestock=?,categorie_id=?,chemin=?   where id =?");
+    $rp->execute([$libelle, $prix, $qtestock,$categorie_id ,$chemin,$id]);
+
+}else{
+    $rp = $cnx->prepare("update produit set libelle=?, prix=?,qtestock=?,categorie_id=?  where id =?");
+    $rp->execute([$libelle, $prix, $qtestock,$categorie_id ,$id]);
+
+}
+      
+
     } catch (PDOException  $e) {
         echo "Erreur de modif de produit  " . $e->getMessage();
     }
@@ -183,7 +192,7 @@ if (!$data) {
     die("Ce n'est pas une image");
 }
 $taille=$infoFichier['size'];
-if($taille>=20000){
+if($taille>=2000000){
 die("la taille max autorisee est de 20ko");
 }
 // $autorise=['pdf','doc','jpeg'];

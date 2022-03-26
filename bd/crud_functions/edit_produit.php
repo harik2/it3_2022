@@ -24,7 +24,10 @@ $categories = all("categorie");
         <div class="row">
             <div class="col-md-6 border mx-auto mt-5 p-3 shadow">
                 <h5 class="text-center mb-2 text-warning">Edition du produit : <?= $produit['libelle'] ?> </h5 class="text-center mb-2 text-warning">
-                <form action="update_produit.php" method="post">
+                <div class="text-center">
+                    <img src="<?= $produit['chemin'] ?>" width="200">
+                </div>
+                <form action="update_produit.php" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="id" id="" value="<?= $produit['id'] ?>">
                     <div class="mb-3">
                         <label for="libelle" class="form-label"> Libelle : </label> <input class="form-control" type="text" name="libelle" id="libelle" value="<?= $produit['libelle'] ?>">
@@ -55,9 +58,14 @@ $categories = all("categorie");
                             <?php } ?>
                     </div>
 
+                    <div class="mb-3">
+                        <label for="chemin" class="form-label"> Image : </label>
+                        <input type="file" name="chemin" id="chemin" class="form-control">
 
+                    </div>
                     <button type="submit" class="btn btn-primary">modifier le produit</button>
                 </form>
+               
             </div>
         </div>
     </div>

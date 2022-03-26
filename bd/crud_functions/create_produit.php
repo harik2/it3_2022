@@ -22,7 +22,7 @@ $categories = all("categorie");
         <div class="row">
             <div class="col-md-6 border mx-auto mt-5 p-3 shadow">
                 <h5 class="text-center mb-2 text-warning">Nouveau Produit: </h5 class="text-center mb-2 text-warning">
-                <form action="store_produit.php" method="post">
+                <form action="store_produit.php" method="post" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="libelle" class="form-label"> Libelle : </label> <input class="form-control" type="text" name="libelle" id="libelle">
 
@@ -61,7 +61,11 @@ $categories = all("categorie");
 
                         </div>
                     </div>
+                    <div class="mb-3">
+                        <label for="chemin" class="form-label"> Image : </label>
+                        <input type="file" required name="chemin" id="chemin" class="form-control">
 
+                    </div>
 
                     <button type="submit" class="btn btn-primary">Ajouter le produit</button>
                 </form>
