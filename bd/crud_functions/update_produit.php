@@ -5,7 +5,7 @@ include "functions.php";
 // $qtestock=$_POST['qtestock'];
 // $id=$_POST['id'];
 extract($_POST);//creer les variables : $id,$libelle,...
-modifier_produit($libelle,$prix,$qtestock,$id);
+modifier_produit($libelle,$prix,$qtestock,$categorie_id,$id);
 header("location:liste_produits.php");
 
 ?>

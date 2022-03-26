@@ -31,12 +31,12 @@ function ajouter_produit($libelle, $prix, $qtestock,$categorie_id=1)
 }
 // modifier un produit 
 
-function modifier_produit($libelle, $prix, $qtestock, $id)
+function modifier_produit($libelle, $prix, $qtestock,$categorie_id, $id)
 {
     try {
         $cnx = connecter_db();
-        $rp = $cnx->prepare("update produit set libelle=?, prix=?,qtestock=? where id =?");
-        $rp->execute([$libelle, $prix, $qtestock, $id]);
+        $rp = $cnx->prepare("update produit set libelle=?, prix=?,qtestock=?,categorie_id=?   where id =?");
+        $rp->execute([$libelle, $prix, $qtestock,$categorie_id ,$id]);
     } catch (PDOException  $e) {
         echo "Erreur de modif de produit  " . $e->getMessage();
     }
