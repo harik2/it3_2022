@@ -11,6 +11,7 @@
 <body>
 
     <form action="uploader.php" method="post" enctype="multipart/form-data">
+        
         Image : <input type="file" name="image">
         <button>Ok</button>
     </form>
