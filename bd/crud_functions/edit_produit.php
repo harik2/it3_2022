@@ -3,8 +3,7 @@ include "functions.php";
 $id = $_GET['id']; //13
 $produit = findById($id, "produit");
 $categories = all("categorie");
-print_r($categories);
-
+// print_r($categories);
 ?>
 <!DOCTYPE html>
 <html lang="en">
