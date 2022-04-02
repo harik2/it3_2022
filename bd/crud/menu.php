@@ -12,6 +12,9 @@
         <li class="nav-item">
           <a class="nav-link" href="liste_produits.php">Liste des produits</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="deconnecter.php">deconnexionm</a>
+        </li>
        
       </ul>
     </div>

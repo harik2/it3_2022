@@ -1,5 +1,9 @@
 <?php
 require_once "functions.php";
+// session_start();
+// if(!($_SESSION['login']=="ali" && $_SESSION['passe']==123)){
+// header("location:login.php?cn=au");
+// }
 if(isset($_GET['mc'])){
 $produits=rechercher($_GET['mc']);
 }else if(isset($_GET['categorie_id'])){

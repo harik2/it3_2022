@@ -1,5 +1,9 @@
 <?php 
 include_once "functions.php";
+session_start();
+if(!($_SESSION['login']=="ali" && $_SESSION['passe']==123)){
+  header("location:login.php?cn=au");
+  }
 $categories=all("categorie");
 ?>
 <nav class="navbar navbar-expand-lg navbar-light  navbar navbar-dark bg-primary">
@@ -22,6 +26,9 @@ $categories=all("categorie");
         </li>
         <li class="nav-item">
           <a class="nav-link" href="liste_categories.php">Liste des categories</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="deconnecter.php">deconnexion</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
