@@ -52,7 +52,7 @@ if(!empty($chemin)){
 }
 
 
-//supprimer un produit 
+//supprimer un produit `r
 //supprimer(1,"produit")
 function supprimer($id,$table)
 {
